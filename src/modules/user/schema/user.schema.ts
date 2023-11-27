@@ -1,18 +1,29 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
-export type UserDocument = HydratedDocument<User>;
 
 @Schema({ timestamps: true })
-export class User {
-  @Prop()
+
+export class UserEntity {
+  @Prop({ required: true })
   name: string;
 
-  @Prop()
-  age: number;
+  @Prop({ required: true, unique: true, sparse: true })
+  contact: string;
 
-  @Prop()
-  breed: string;
+  @Prop({ unique: true, sparse: true })
+  altContact: string;
+
+  @Prop({ enum: ['MALE', 'FEMALE', 'OTHER'] })
+  gender: string;
+
+  @Prop({ default: false })
+  isAdmin: boolean;
+
+  @Prop({ default: false })
+  isAgent: boolean;
+
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserDatabaseName = 'User';
+export const UserSchema = SchemaFactory.createForClass(UserEntity);
+export type UserDocument = UserEntity & Document;
