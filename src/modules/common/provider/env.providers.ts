@@ -1,8 +1,8 @@
 import { config } from 'dotenv';
 
-config()
+config();
 
 const DATABASE_URL = process.env.DATABASE_URL;
 const PORT = process.env.PORT;
 
-export { DATABASE_URL, PORT }
+export { DATABASE_URL, PORT };

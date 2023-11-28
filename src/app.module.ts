@@ -16,4 +16,4 @@ import { DB_CONNECTIONS_NAMES } from './modules/common/constants/db-connections-
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
